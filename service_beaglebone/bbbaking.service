@@ -1,0 +1,17 @@
+[Unit]
+Description=Control Software for Sirius Baking Tapes and Jackets
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Restart=always
+RestartSec=3
+Type=simple 
+WorkingDirectory=/root/bbbaking/src/
+ExecStartPre=/bin/bash /root/bbbaking/src/PinConfig.sh
+ExecStart=/usr/bin/python /root/bbbaking/src/control_DC.py
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target
